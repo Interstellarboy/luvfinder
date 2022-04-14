@@ -6,24 +6,29 @@ import hero from "./assets/hero.png";
 import doge from "./assets/dogecoin.png";
 import axios from "axios";
 import bit from "./assets/bit.png";
-import ok from "./assets/ok.png";
+import telegram from "./assets/telegram.svg";
+import chat from "./assets/chat.png";
 import "./Tables.css";
 
 function AosAnimation() {
   const baseUrl = "https://luvfinder.luvinu.io/api/getmemeMarket/";
-  const [names, setNames] = useState([]);
-  const [ltc, setLtc] = useState([]);
-  const [bid, setBid] = useState([]);
-  const [volume, setVolume] = useState([]);
+  // const [names, setNames] = useState([]);
+  // const [ltc, setLtc] = useState([]);
+  // const [bid, setBid] = useState([]);
+  // const [volume, setVolume] = useState([]);
   const [checks, setChecks] = useState([]);
-  const [currency, setCurrency] = useState("DOGE-INR");
+  const [currency, setCurrency] = useState("DOGE-USD");
+  const MINUTE_MS = 60000;
   function clicks() {
-    const curr = document.getElementById("colorpick").value;
-    const coin = document.getElementById("coinpicker").value;
-    setCurrency(`${coin}` + `-${curr}`);
+    let curr = document.getElementById("that").value;
+    // let coin = document.getElementById("coinpicker").value;
+    let oin = document.getElementById("this").value;
+
+    console.log(oin);
+    console.log(curr);
+    setCurrency(`${oin}` + `-${curr}`);
     // console.log(currency);
   }
-  const MINUTE_MS = 60000;
 
   useEffect(() => {
     const loadPost = async () => {
@@ -37,6 +42,7 @@ function AosAnimation() {
     const intervals = setInterval(() => {
       loadPost();
       console.log("min");
+      // console.log(currency);
     }, MINUTE_MS);
     loadPost();
   }, [currency]);
@@ -48,25 +54,25 @@ function AosAnimation() {
   }, []);
 
   return (
-    <div className="main-container p-10 md:container md:mx-auto sm:mx-auto">
-      <div className="flex">
+    <div className="main-container p-5 w-50 ">
+      <div className="flex-col lg:flex ">
         <div data-aos="fade-right">
-          <h1 className="text-5xl text-left font-bold m-7 ">
+          <h1 className="text-3xl lg:text-4xl text-left font-bold m-7 ">
             Top Memes Tokens by Market Capitalization
           </h1>
-          <h1 className="text-2xl text-left text-lime-400 mx-7">
+          <h1 className="text-xl lg:text-2xl text-left text-lime-400 mx-7">
             This page lists the top meme coins and tokens. These projects are
             listed by market capitalization with the largest first and then
             descending in order.
           </h1>
         </div>
-        <div data-aos="fade-left">
-          <img src={hero} alt="" className="container-sm m-auto" />
+        <div data-aos="fade-left" className="pl-20">
+          <img src={hero} alt="" className="h-40 w-40 pr-10" />
         </div>
       </div>
 
-      <div className="flex justify-between m-7 " data-aos="fade-up">
-        <div className="shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000 ">
+      <div className="flex flex-wrap justify-between m-7 " data-aos="fade-up">
+        <div className="w-full lg:w-40 shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000 ">
           <div className="flex m-3">
             <img src={doge} alt="doge" className="h-7 w-7" />
             Dogecoin
@@ -77,7 +83,7 @@ function AosAnimation() {
         </div>
 
         {/*  */}
-        <div className="shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
+        <div className="w-full lg:w-40 shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
           <h4 className="flex m-3">
             <img src={doge} alt="doge" className="h-7 w-7" />
             Dogecoin
@@ -87,18 +93,15 @@ function AosAnimation() {
           <h6>Last 5 mins</h6>
         </div>
         {/*  */}
-        <div className="shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
+        <div className="w-full lg:w-40 shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
           <h4 className="flex m-3 text-lime-400 font-bold">
             <img src={doge} alt="doge" className="h-7 w-7" />
             Best Price to Trade
           </h4>
-          <h5 className="font-bold">0.1272927229 %</h5>
-          <h5 className="text-xs p-2 ">
-            Average DOGE/USD net price including commission
-          </h5>
+
           <h6>Last 5 mins</h6>
         </div>
-        <div className="shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
+        <div className="w-full lg:w-40 shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
           <h4 className="flex m-3">
             <img src={doge} alt="doge" className="h-7 w-7" />
             Dogecoin
@@ -107,7 +110,7 @@ function AosAnimation() {
           <h5 className="font-bold">0.69 %</h5>
           <h6>Last 5 mins</h6>
         </div>
-        <div className="shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
+        <div className="w-full lg:w-40 shadow-2xl p-5 hover:scale-y-110 hover:scale-110 duration-1000">
           <h4 className="flex m-3">
             <img src={doge} alt="doge" className="h-7 w-7" />
             Dogecoin
@@ -118,7 +121,7 @@ function AosAnimation() {
         </div>
       </div>
       <div className="flex justify-start">
-        <select name="colorpick" id="colorpick" onChange={clicks}>
+        <select name="colorpick" id="that" onChange={clicks}>
           <option value="USD">USD</option>
           <option value="INR">INR</option>
           <option value="JPY">JPY</option>
@@ -129,7 +132,7 @@ function AosAnimation() {
           <option value="BNB">BNB</option>
           <option value="ETH">ETH</option>
         </select>
-        <select name="colorpick" id="coinpicker" onChange={clicks}>
+        <select name="coinpicker" id="this" onChange={clicks}>
           <option value="DOGE">DOGE</option>
           <option value="SHIB">SHIB</option>
           <option value="MIM">MIM</option>
@@ -143,8 +146,8 @@ function AosAnimation() {
         </select>
       </div>
       {/* tables */}
-      <div data-aos="fade-up">
-        <table id="customers">
+      <div data-aos="" className="overflow-x-scroll w-full">
+        <table id="customers" className="sm:w-full overflow-x-scroll">
           <thead>
             <tr>
               <th>Platform</th>
@@ -167,6 +170,18 @@ function AosAnimation() {
             </tbody>
           ))}
         </table>
+      </div>
+      <div>
+        <img
+          src={chat}
+          alt=""
+          className="fixed right-0 bottom-0 w-7 h-7 lg:hidden"
+        />
+        <img
+          src={telegram}
+          alt=""
+          className=" hidden lg:fixed right-0 bottom-0 w-7 h-7 lg:block"
+        />
       </div>
     </div>
   );
